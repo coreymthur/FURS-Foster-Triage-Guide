@@ -1,1357 +1,748 @@
 <!DOCTYPE html>
-<!-- saved from url=(0058)file:///Users/coreymthur/Downloads/furs-ferret-triage.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FURS Foster Ferret Triage Guide</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink:       #1c1a17;
-    --cream:     #faf7f2;
-    --warm-mid:  #e8e2d8;
-    --accent:    #c05c2e;   /* burnt sienna — ferret coat color */
-    --green:     #3a6b4a;
-    --yellow:    #c49a1a;
-    --blue:      #2a5f8f;
-    --red:       #b53030;
-    --tag-green-bg: #eaf3ec; --tag-green-txt: #2a5338;
-    --tag-yellow-bg: #fdf5dc; --tag-yellow-txt: #7a5c00;
-    --tag-blue-bg: #e5eef8; --tag-blue-txt: #1c3f61;
-    --tag-red-bg: #fdeaea; --tag-red-txt: #7a1c1c;
-    --r: 8px;
+    --blue:       #1a5fa8;
+    --blue-dk:    #0e3d6e;
+    --blue-lt:    #e8f1fb;
+    --ink:        #1a1a2a;
+    --body-txt:   #2e2e40;
+    --bg:         #f5f7fa;
+    --surface:    #ffffff;
+    --border:     #d0daea;
+    --muted:      #6b7a90;
+
+    --green:      #2a7a4b;
+    --green-bg:   #edf7f2;
+    --yellow:     #8a6000;
+    --yellow-bg:  #fdf6e3;
+    --red:        #b83030;
+    --red-bg:     #fdf0f0;
   }
 
-  html { font-size: 16px; }
+  html { font-size: 17px; }
+
   body {
     font-family: 'Inter', sans-serif;
-    background: #d5cec4;
-    color: var(--ink);
+    background: #dde4ef;
+    color: var(--body-txt);
     min-height: 100vh;
     display: flex;
     justify-content: center;
   }
+
   .page-shell {
     width: 100%;
-    max-width: 700px;
-    background: var(--cream);
-    box-shadow: 0 0 40px rgba(0,0,0,0.12);
+    max-width: 640px;
+    background: var(--bg);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
   }
 
   /* ── HEADER ── */
   header {
-    background: var(--ink);
-    color: var(--cream);
-    padding: 28px 24px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    background: var(--blue-dk);
+    color: white;
+    padding: 24px 20px 20px;
   }
   .header-org {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    opacity: 0.55;
+    opacity: 0.7;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
   }
   .header-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.5rem, 5vw, 2.1rem);
-    line-height: 1.1;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 6px;
   }
-  .header-title em { color: var(--accent); font-style: italic; }
+  .header-title span { color: #7fb8f5; }
   .header-sub {
-    font-size: 0.82rem;
-    opacity: 0.6;
-    margin-top: 4px;
+    font-size: 0.85rem;
+    opacity: 0.7;
     line-height: 1.5;
   }
 
+  /* ── EMERGENCY STRIP ── */
+  .emergency-strip {
+    background: var(--red);
+    color: white;
+    padding: 12px 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+  .emergency-strip strong { font-weight: 700; }
+
+  /* ── QUICK NOTE ── */
+  .quick-note {
+    background: var(--blue-lt);
+    border-left: 4px solid var(--blue);
+    margin: 16px 16px 0;
+    padding: 12px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .quick-note strong { color: var(--blue-dk); }
+
   /* ── LEGEND ── */
   .legend {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    padding: 14px 24px;
-    background: var(--warm-mid);
-    border-bottom: 1px solid #d5cec4;
+    margin: 16px 16px 0;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .legend-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
   }
   .legend-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.78rem;
+    gap: 10px;
+    font-size: 0.9rem;
     font-weight: 500;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--bg);
+    color: var(--ink);
   }
-  .dot {
-    width: 11px; height: 11px;
+  .legend-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .legend-item:first-of-type { padding-top: 0; }
+  .ldot {
+    width: 13px; height: 13px;
     border-radius: 50%;
     flex-shrink: 0;
   }
-  .dot-green { background: var(--green); }
-  .dot-yellow { background: var(--yellow); }
-  .dot-blue { background: var(--blue); }
-  .dot-red { background: var(--red); }
+  .ldot-green  { background: var(--green); }
+  .ldot-yellow { background: var(--yellow); }
+  .ldot-blue   { background: var(--blue); }
+  .ldot-red    { background: var(--red); }
 
-  /* ── TRIAGE PROTOCOL BANNER ── */
-  .protocol-banner {
-    margin: 20px 24px 0;
-    border: 1.5px solid var(--accent);
-    border-radius: var(--r);
-    background: #fff8f4;
+  /* ── TRIAGE STEPS (always visible, collapsible) ── */
+  .steps-block {
+    margin: 16px 16px 0;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
     overflow: hidden;
   }
-  .protocol-banner-header {
-    background: var(--accent);
-    color: white;
-    padding: 8px 16px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
+  .steps-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    gap: 10px;
+  }
+  .steps-block-header:active { background: var(--bg); }
+  .steps-block-header .sh-left { display: flex; align-items: center; gap: 10px; }
+  .steps-block-header .sh-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .steps-block-header .sh-label { font-size: 0.95rem; font-weight: 700; color: var(--ink); }
+  .steps-block-header .sh-arrow { color: var(--muted); flex-shrink: 0; transition: transform 0.2s; }
+  .steps-block.open .sh-arrow { transform: rotate(180deg); }
+  .steps-block-body {
+    display: none;
+    border-top: 1.5px solid var(--border);
+    padding: 14px 16px;
+  }
+  .steps-block.open .steps-block-body { display: block; }
+
+  /* ── INLINE SECTIONS (no dropdown) ── */
+  .inline-section {
+    margin: 16px 16px 0;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .inline-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  /* ── BOTTOM SECTIONS ── */
+  .bottom-sections {
+    margin: 24px 0 0;
+    border-top: 2px solid var(--border);
+  }
+  .bottom-section {
+    padding: 20px 16px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .bottom-section:last-child { border-bottom: none; }
+  .bottom-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 8px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .protocol-banner-header svg { flex-shrink: 0; }
-  .toggle-arrow { margin-left: auto; transition: transform 0.25s; }
-  .protocol-banner-header.open .toggle-arrow { transform: rotate(180deg); }
-  .protocol-body {
-    padding: 14px 16px;
-    font-size: 0.82rem;
-    line-height: 1.65;
-    display: none;
-  }
-  .protocol-body.open { display: block; }
-  .protocol-steps { list-style: none; counter-reset: steps; }
-  .protocol-steps li {
-    counter-increment: steps;
-    display: flex;
-    gap: 10px;
-    margin-bottom: 8px;
-    align-items: flex-start;
-  }
-  .protocol-steps li::before {
-    content: counter(steps);
-    background: var(--accent);
-    color: white;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    font-size: 0.72rem;
-    font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    margin-top: 1px;
   }
 
-  /* ── SEARCH ── */
-  .search-wrap {
-    padding: 16px 24px 0;
+  /* protocol steps */
+  .steps { display: flex; flex-direction: column; gap: 10px; list-style: none; counter-reset: s; }
+  .steps li {
+    counter-increment: s;
+    display: flex; gap: 11px; align-items: flex-start;
+    font-size: 0.88rem; line-height: 1.55; color: var(--body-txt);
   }
+  .steps li::before {
+    content: counter(s);
+    background: var(--blue);
+    color: white;
+    min-width: 24px; height: 24px;
+    border-radius: 50%;
+    font-size: 0.75rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .steps-note {
+    margin-top: 12px;
+    background: var(--red-bg);
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--red); line-height: 1.45;
+  }
+  .steps-vet {
+    margin-top: 8px;
+    font-size: 0.82rem; color: var(--muted); line-height: 1.45;
+  }
+
+  /* know before it happens */
+  .know-list { display: flex; flex-direction: column; gap: 8px; }
+  .know-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 0.87rem; line-height: 1.55; color: var(--body-txt);
+    padding: 9px 12px;
+    background: var(--bg);
+    border-radius: 8px;
+  }
+  .know-item .ki { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* normal things */
+  .normal-list { display: flex; flex-direction: column; gap: 6px; }
+  .normal-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 0.87rem; line-height: 1.55;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--body-txt);
+  }
+  .normal-item:last-child { border-bottom: none; }
+  .normal-item .ni { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* seasonal */
+  .season-list { display: flex; flex-direction: column; gap: 8px; }
+  .season-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 0.87rem; line-height: 1.55;
+    color: var(--body-txt);
+  }
+  .sbadge {
+    font-size: 0.65rem; font-weight: 700;
+    padding: 3px 8px; border-radius: 99px;
+    flex-shrink: 0; margin-top: 2px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .sb-summer { background: #ffe4cc; color: #7a3300; }
+  .sb-winter { background: #cce4ff; color: #003a6e; }
+  .sb-spring { background: #d4f2e2; color: #1a4d2e; }
+  .sb-always { background: var(--blue-lt); color: var(--blue-dk); }
+
+  /* ── SEARCH ── */
+  .search-wrap { margin: 16px 16px 0; }
   .search-box {
     display: flex;
-    gap: 0;
-    border: 1.5px solid var(--warm-mid);
-    border-radius: var(--r);
-    background: white;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
     overflow: hidden;
     transition: border-color 0.15s;
   }
-  .search-box:focus-within { border-color: var(--accent); }
+  .search-box:focus-within { border-color: var(--blue); }
   .search-input {
-    flex: 1;
-    padding: 10px 14px;
-    border: none;
+    flex: 1; padding: 13px 14px;
+    border: none; background: transparent;
     font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    background: transparent;
-    outline: none;
-    min-width: 0;
+    font-size: 0.93rem; color: var(--ink);
+    outline: none; min-width: 0;
   }
+  .search-input::placeholder { color: #9aaabb; }
   .search-btn {
-    padding: 0 14px;
-    background: var(--accent);
-    border: none;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0 18px;
+    background: var(--blue); border: none;
+    color: white; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 1rem;
     transition: background 0.15s;
-    flex-shrink: 0;
   }
-  .search-btn:hover { background: #a34d25; }
-  .search-btn.loading { background: #888; cursor: default; }
+  .search-btn:hover { background: var(--blue-dk); }
+  .search-btn.loading { background: var(--muted); cursor: default; }
   .search-hint {
-    font-size: 0.73rem;
-    color: #888;
-    margin-top: 5px;
-    line-height: 1.4;
+    font-size: 0.78rem; color: var(--muted);
+    margin-top: 7px; line-height: 1.5;
   }
   .ai-result {
     margin-top: 10px;
-    padding: 10px 14px;
-    background: #fff8f4;
-    border: 1px solid #e8c9b8;
-    border-radius: var(--r);
-    font-size: 0.82rem;
-    line-height: 1.6;
-    color: var(--ink);
+    padding: 12px 14px;
+    background: var(--blue-lt);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.85rem; line-height: 1.6;
+    color: var(--ink); display: none;
   }
-  .ai-result strong { color: var(--accent); }
+  .ai-result strong { color: var(--blue-dk); }
 
   /* ── FILTER PILLS ── */
   .filter-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 12px 24px 0;
+    display: flex; flex-wrap: wrap;
+    gap: 7px; padding: 14px 16px 0;
   }
   .pill {
-    padding: 5px 12px;
-    border-radius: 99px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border: 1.5px solid transparent;
-    cursor: pointer;
-    transition: all 0.15s;
-    background: white;
-    color: var(--ink);
-    border-color: var(--warm-mid);
+    padding: 7px 14px; border-radius: 99px;
+    font-size: 0.8rem; font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border: 1.5px solid var(--border);
+    cursor: pointer; background: var(--surface);
+    color: var(--muted); transition: all 0.15s;
   }
-  .pill.active-all { background: var(--ink); color: white; border-color: var(--ink); }
-  .pill.active-green { background: var(--tag-green-bg); color: var(--tag-green-txt); border-color: var(--green); }
-  .pill.active-yellow { background: var(--tag-yellow-bg); color: var(--tag-yellow-txt); border-color: var(--yellow); }
-  .pill.active-blue { background: var(--tag-blue-bg); color: var(--tag-blue-txt); border-color: var(--blue); }
-  .pill.active-red { background: var(--tag-red-bg); color: var(--tag-red-txt); border-color: var(--red); }
+  .pill.active-all    { background: var(--blue);    color: white; border-color: var(--blue); }
+  .pill.active-green  { background: var(--green-bg); color: var(--green);  border-color: var(--green); }
+  .pill.active-yellow { background: var(--yellow-bg);color: var(--yellow); border-color: var(--yellow); }
+  .pill.active-blue   { background: var(--blue-lt);  color: var(--blue-dk);border-color: var(--blue); }
+  .pill.active-red    { background: var(--red-bg);   color: var(--red);    border-color: var(--red); }
+
+  /* ── LEVEL HEADERS ── */
+  .level-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 18px 16px 6px;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase;
+  }
+  .level-header .lh-line { flex: 1; height: 1.5px; border-radius: 99px; }
+  .lh-green  { color: var(--green); }  .lh-green  .lh-line { background: var(--green); }
+  .lh-yellow { color: var(--yellow); } .lh-yellow .lh-line { background: var(--yellow); }
+  .lh-blue   { color: var(--blue); }   .lh-blue   .lh-line { background: var(--blue); }
+  .lh-red    { color: var(--red); }    .lh-red    .lh-line { background: var(--red); }
 
   /* ── CARDS ── */
-  .cards {
-    padding: 16px 24px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .cards { padding: 0 16px 48px; display: flex; flex-direction: column; gap: 8px; }
+
   .card {
-    background: white;
-    border-radius: var(--r);
-    border: 1px solid var(--warm-mid);
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
     overflow: hidden;
-    transition: box-shadow 0.15s;
   }
-  .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
   .card-header {
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    user-select: none;
+    display: flex; align-items: center;
+    gap: 12px; padding: 14px 14px;
+    cursor: pointer; user-select: none;
+    min-height: 56px;
   }
-  .card-level {
+  .card-header:active { background: var(--bg); }
+  .card-bar {
+    width: 5px; align-self: stretch;
+    min-height: 32px; border-radius: 99px;
     flex-shrink: 0;
-    width: 8px;
-    height: 100%;
-    min-height: 36px;
-    border-radius: 4px;
   }
-  .card-level-green { background: var(--green); }
-  .card-level-yellow { background: var(--yellow); }
-  .card-level-blue { background: var(--blue); }
-  .card-level-red { background: var(--red); }
+  .bar-green  { background: var(--green); }
+  .bar-yellow { background: var(--yellow); }
+  .bar-blue   { background: var(--blue); }
+  .bar-red    { background: var(--red); }
 
-  .card-name {
-    font-weight: 600;
-    font-size: 0.95rem;
-    flex: 1;
-    line-height: 1.3;
-  }
+  .card-name { font-weight: 600; font-size: 0.97rem; flex: 1; line-height: 1.35; color: var(--ink); }
   .card-tag {
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 99px;
-    flex-shrink: 0;
-    white-space: nowrap;
+    font-size: 0.68rem; font-weight: 700;
+    padding: 4px 9px; border-radius: 99px;
+    flex-shrink: 0; white-space: nowrap;
   }
-  .tag-green { background: var(--tag-green-bg); color: var(--tag-green-txt); }
-  .tag-yellow { background: var(--tag-yellow-bg); color: var(--tag-yellow-txt); }
-  .tag-blue { background: var(--tag-blue-bg); color: var(--tag-blue-txt); }
-  .tag-red { background: var(--tag-red-bg); color: var(--tag-red-txt); }
+  .tag-green  { background: var(--green-bg);  color: var(--green); }
+  .tag-yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .tag-blue   { background: var(--blue-lt);   color: var(--blue-dk); }
+  .tag-red    { background: var(--red-bg);    color: var(--red); }
 
-  .card-chevron { opacity: 0.4; flex-shrink: 0; transition: transform 0.2s; }
-  .card.open .card-chevron { transform: rotate(180deg); }
+  .card-chevron { opacity: 0.3; flex-shrink: 0; transition: transform 0.2s; }
+  .card.open .card-chevron { transform: rotate(180deg); opacity: 0.5; }
 
   .card-body {
     display: none;
-    padding: 0 16px 14px 36px;
-    font-size: 0.83rem;
-    line-height: 1.65;
-    color: #3a3732;
-    border-top: 1px solid var(--warm-mid);
+    padding: 0 14px 14px 31px;
+    border-top: 1.5px solid var(--border);
+    font-size: 0.87rem; line-height: 1.65;
+    color: var(--body-txt);
   }
   .card.open .card-body { display: block; }
 
-  .card-body section { margin-top: 10px; }
+  .card-body section { margin-top: 11px; }
   .card-body h4 {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    opacity: 0.5;
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--blue); opacity: 0.75;
     margin-bottom: 3px;
   }
-  .card-body p { margin-bottom: 2px; }
-  .alert {
-    margin-top: 8px;
-    padding: 7px 10px;
-    border-radius: 5px;
-    font-size: 0.79rem;
-    font-weight: 500;
+
+  .card-alert {
+    margin-top: 10px; padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem; font-weight: 600;
+    line-height: 1.45;
   }
-  .alert-red { background: var(--tag-red-bg); color: var(--tag-red-txt); }
-  .alert-yellow { background: var(--tag-yellow-bg); color: var(--tag-yellow-txt); }
-  .alert-green { background: var(--tag-green-bg); color: var(--tag-green-txt); }
+  .alert-red    { background: var(--red-bg);    color: var(--red); }
+  .alert-yellow { background: var(--yellow-bg); color: var(--yellow); }
 
   /* ── FOOTER ── */
   footer {
-    background: var(--ink);
-    color: var(--cream);
-    padding: 20px 24px;
-    font-size: 0.78rem;
-    opacity: 0.85;
-    line-height: 1.6;
+    background: var(--blue-dk);
+    color: rgba(255,255,255,0.6);
+    padding: 20px; font-size: 0.76rem;
+    line-height: 1.65; margin-top: auto;
   }
-  footer strong { color: white; opacity: 1; }
-
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  footer strong { color: white; }
 
   .no-results {
-    text-align: center;
-    padding: 40px 0;
-    font-size: 0.88rem;
-    color: #888;
+    text-align: center; padding: 40px 0;
+    font-size: 0.9rem; color: var(--muted);
     display: none;
   }
+
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 <div class="page-shell">
 
+<!-- HEADER -->
 <header>
-  <div class="header-org">FURS</div>
-  <h1 class="header-title">Foster <em>Triage</em> Guide</h1>
-  <p class="header-sub">Know what to handle at home, when to call a board member, and when it's truly an emergency.</p>
+  <div class="header-org">🐾 Ferrets Unlimited Rescue Services</div>
+  <h1 class="header-title">Foster <span>Triage</span> Guide</h1>
+  <p class="header-sub">What to handle at home, when to call the board, and when to go to the vet.</p>
 </header>
 
+<!-- EMERGENCY STRIP -->
+<div class="emergency-strip">
+  🚨 <strong>True emergency?</strong> Go to the vet now — call the board while driving. Don't wait.
+</div>
+
+<!-- LEGEND -->
 <div class="legend">
-  <div class="legend-item"><div class="dot dot-green"></div> Foster can handle independently</div>
-  <div class="legend-item"><div class="dot dot-yellow"></div> Contact board for assistance</div>
-  <div class="legend-item"><div class="dot dot-blue"></div> Vet appt — contact board to schedule</div>
-  <div class="legend-item"><div class="dot dot-red"></div> Emergency vet — go now</div>
+  <div class="legend-title">What the colors mean</div>
+  <div class="legend-item"><div class="ldot ldot-green"></div> Foster can handle at home</div>
+  <div class="legend-item"><div class="ldot ldot-yellow"></div> Call the board for help</div>
+  <div class="legend-item"><div class="ldot ldot-blue"></div> Needs a vet — board will schedule</div>
+  <div class="legend-item"><div class="ldot ldot-red"></div> Emergency vet — go now</div>
 </div>
 
-<div class="protocol-banner">
-  <div class="protocol-banner-header open" onclick="toggleProtocol(this)">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg>
-    Before you do anything — follow these steps
-    <svg class="toggle-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-  </div>
-  <div class="protocol-body open" id="protocolBody">
-    <ol class="protocol-steps">
-      <li><strong>Observe and note</strong> — What are the exact symptoms? When did they start? Is the ferret eating, drinking, moving normally?</li>
-      <li><strong>Check this guide</strong> — Find the matching condition. Read the full card.</li>
-      <li><strong>Call or text the board if needed</strong> — For green items, reach out if you're unsure or it's your first time. For everything yellow and above, always contact a board member before or while acting. A photo or 10-second video is worth a thousand words.</li>
-      <li><strong>Act based on guidance</strong> — The board member will confirm whether to handle at home, come over, or go to the vet.</li>
-      <li><strong>Document it</strong> — Note what happened, what you did, and how the ferret responded. Tell the board so we can track patterns.</li>
-    </ol>
-    <div class="alert alert-red" style="margin-top:12px">⚠️ For RED emergencies: act first, call while driving. Do not wait for a callback.</div>
-    <p style="margin-top: 10px;"><strong>Vet partner:</strong> Avon Lake Animal Clinic — contact a board member for the current emergency number.</p>
-  </div>
+<!-- TRIAGE STEPS (always visible, no dropdown) -->
+<div class="inline-section">
+  <div class="inline-section-title">📋 Triage Steps — Read Ahead of Time</div>
+  <ol class="steps">
+    <li><strong>Observe</strong> — What are you seeing? When did it start? Is the ferret eating and moving normally?</li>
+    <li><strong>Find the card</strong> — Look it up below or use the search bar. Read the full card.</li>
+    <li><strong>Contact the board if needed</strong> — Green items: reach out if it's your first time or you're unsure. Yellow and above: always contact the board before or while acting.</li>
+    <li><strong>Act</strong> — Board will tell you whether to handle at home, have someone come over, or head to the vet.</li>
+    <li><strong>Write it down</strong> — Note what happened and what you did. Let the board know so we can track patterns.</li>
+  </ol>
+  <div class="steps-note">🚨 Red emergencies: go first, call board while driving.</div>
+  <p class="steps-vet"><strong>Vet partner:</strong> Avon Lake Animal Clinic — contact board for scheduling.</p>
 </div>
 
+<!-- SEARCH -->
 <div class="search-wrap">
   <div class="search-box">
-    <input class="search-input" type="text" id="searchInput" placeholder="Describe what you&#39;re seeing (e.g. " my="" ferret="" is="" wobbly="" and="" drooling")…"="" oninput="onSearchInput()">
-    <button class="search-btn" id="searchBtn" onclick="runAISearch()" title="Search with AI">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+    <input class="search-input" type="text" id="searchInput"
+      placeholder="Search: seizing, hair loss, vomiting, lump…"
+      oninput="onSearchInput()">
+    <button class="search-btn" id="searchBtn" onclick="runAISearch()" title="AI search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     </button>
   </div>
-  <div class="search-hint" id="searchHint">Type a symptom or condition name, then press Enter or the search button for AI-assisted matching.</div>
-  <div class="ai-result" id="aiResult" style="display:none"></div>
+  <div class="search-hint">Type a keyword or describe what you're seeing, then press Enter for AI help.</div>
+  <div class="ai-result" id="aiResult"></div>
 </div>
 
+<!-- FILTER PILLS -->
 <div class="filter-row">
-  <button class="pill active-all" onclick="setFilter(&#39;all&#39;, this)">All</button>
-  <button class="pill" onclick="setFilter(&#39;green&#39;, this)">🟢 Foster handles</button>
-  <button class="pill" onclick="setFilter(&#39;yellow&#39;, this)">🟡 Board assistance</button>
-  <button class="pill" onclick="setFilter(&#39;blue&#39;, this)">🔵 Schedule vet</button>
-  <button class="pill" onclick="setFilter(&#39;red&#39;, this)">🔴 Emergency</button>
+  <button class="pill active-all" onclick="setFilter('all',this)">All</button>
+  <button class="pill" onclick="setFilter('green',this)">🟢 Foster handles</button>
+  <button class="pill" onclick="setFilter('yellow',this)">🟡 Call board</button>
+  <button class="pill" onclick="setFilter('blue',this)">🔵 Vet appt</button>
+  <button class="pill" onclick="setFilter('red',this)">🔴 Emergency</button>
 </div>
 
-<div class="cards" id="cardContainer"><div class="card" data-level="green">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-green"></div>
-        <div class="card-name">Nail Trimming</div>
-        <div class="card-tag tag-green">🟢 Foster can handle independently</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Nails clicking on hard surfaces, curling, catching on fabric.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Call a board member first time for a video walkthrough. Use small pet or human nail clippers. Trim just the clear tip — avoid the pink quick (blood vessel). If you hit the quick and it bleeds, apply styptic powder or cornstarch with light pressure.</p>
-        </section>
-        <section>
-          <h4>Board assistance (optional)</h4>
-          <p>Yes — first time. After you're trained, you can do this independently.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>If nails are severely curled into the foot pad or paw is swollen/infected → 🔵 Schedule vet.</p></section>
-      </div>
-    </div><div class="card" data-level="green">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-green"></div>
-        <div class="card-name">Ear Cleaning (Mild Brown Buildup)</div>
-        <div class="card-tag tag-green">🟢 Foster can handle independently</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Moderate brown waxy buildup in ears, no odor, ferret not scratching excessively.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Use a ferret-safe or kitten ear cleaner. Dampen a cotton ball — never insert cotton swabs deep into the canal. Wipe visible wax gently. Contact a board member before cleaning if you've never done it.</p>
-        </section>
-        <section>
-          <h4>Board assistance (optional)</h4>
-          <p>Yes — first time or if unsure.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>If buildup is dark/black and crumbly with head shaking or scratching → likely ear mites. See that card (🔵).</p></section>
-      </div>
-    </div><div class="card" data-level="green">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-green"></div>
-        <div class="card-name">Mild Low Blood Sugar Episode (Known Insulinomic Ferret)</div>
-        <div class="card-tag tag-green">🟢 Foster can handle independently</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Glassy stare, drooling, pawing at mouth, wobbly hind legs, seems dazed or slow. Ferret is still conscious.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Immediately rub a small amount of Karo syrup, honey, or Nutrical on the gums. Do NOT give liquid to an unconscious ferret. Follow with a small protein meal (chicken baby food, softened kibble) once alert — the sugar spike will be followed by a crash without protein. Keep ferret warm. Call board member right away.</p>
-        </section>
-        <section>
-          <h4>Board assistance (optional)</h4>
-          <p>Yes — immediately. Even if ferret recovers, we need to know.</p>
-        </section>
-        <div class="alert alert-yellow">⚠️ Every episode must be reported — frequency tells us if medical management needs adjusting.</div>
-        <section><h4>When to escalate</h4><p>If ferret does not respond within 2–3 minutes, loses consciousness, or has a full seizure → 🔴 Emergency vet immediately.</p></section>
-      </div>
-    </div><div class="card" data-level="green">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-green"></div>
-        <div class="card-name">Mast Cell Tumor — Small, Non-Ulcerated (Known)</div>
-        <div class="card-tag tag-green">🟢 Foster can handle independently</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Small (under 1cm), circular, slightly raised reddish bump on skin. May wax and wane. Ferret mostly unbothered by it.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Apply Benadryl cream (diphenhydramine topical) 2–3x daily if ferret is itching at it. This reduces histamine production and irritation. Take a photo and send to board member. Do NOT attempt to freeze with OTC wart removers — this can damage tissue.</p>
-        </section>
-        <section>
-          <h4>Board assistance (optional)</h4>
-          <p>Yes — send a photo for documentation. Board member will advise whether it needs vet evaluation.</p>
-        </section>
-        <div class="alert alert-yellow">⚠️ If the tumor ulcerates, grows rapidly, or becomes infected — escalate to 🔵 or 🔴.</div>
-        <section><h4>When to escalate</h4><p>If new, unknown lump: treat as 🔵 until identified by vet.</p></section>
-      </div>
-    </div><div class="card" data-level="green">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-green"></div>
-        <div class="card-name">Hairball / Minor Vomiting (Isolated Incident)</div>
-        <div class="card-tag tag-green">🟢 Foster can handle independently</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Single vomiting episode, no blood, ferret alert afterward and eating normally.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Offer fresh water and monitor. Give a small amount of Ferret Lax or Petromalt (hairball remedy) per package instructions. Keep food available.</p>
-        </section>
-        <section>
-          <h4>Board assistance (optional)</h4>
-          <p>Report within the day.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Repeated vomiting, blood, lethargy, or not eating → 🔴 Emergency. Ferrets can block quickly.</p></section>
-      </div>
-    </div><div class="card" data-level="green">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-green"></div>
-        <div class="card-name">Mild Diarrhea (Single Day, No Blood)</div>
-        <div class="card-tag tag-green">🟢 Foster can handle independently</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Loose or soft stools, no blood, ferret otherwise alert. May follow a diet change.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Ensure fresh water access. Avoid diet changes. Monitor closely. Keep a photo of the stool to share with board.</p>
-        </section>
-        <section>
-          <h4>Board assistance (optional)</h4>
-          <p>Yes — report same day with a description or photo of stool.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Blood in stool, black tarry stool, or diarrhea lasting more than 24–48 hrs → 🔵 or 🔴 depending on severity.</p></section>
-      </div>
-    </div><div class="card" data-level="green">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-green"></div>
-        <div class="card-name">Minor Cuts or Scrapes</div>
-        <div class="card-tag tag-green">🟢 Foster can handle independently</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Small wound from play or cage. Minor bleeding that stops within a few minutes.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Clean with dilute chlorhexidine solution or saline. Apply gentle pressure with clean gauze if still bleeding. Do NOT use hydrogen peroxide — too harsh for ferret tissue. Keep the area clean and watch for infection.</p>
-        </section>
-        <section>
-          <h4>Board assistance (optional)</h4>
-          <p>Yes — notify and send a photo.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Deep puncture wounds, wounds that won't stop bleeding, or signs of infection (swelling, discharge, heat) → 🔵 or 🔴.</p></section>
-      </div>
-    </div><div class="card" data-level="green">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-green"></div>
-        <div class="card-name">Sneezing (Occasional, No Other Symptoms)</div>
-        <div class="card-tag tag-green">🟢 Foster can handle independently</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Occasional sneezing, no nasal discharge, eating and active normally.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Check for dust in bedding or litter. Switch to unscented, low-dust litter. Monitor.</p>
-        </section>
-        <section>
-          <h4>Board assistance (optional)</h4>
-          <p>Only if sneezing increases or other symptoms appear.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Persistent sneezing, nasal discharge, lethargy, or difficulty breathing → 🔵.</p></section>
-      </div>
-    </div><div class="card" data-level="yellow">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-yellow"></div>
-        <div class="card-name">Ear Mites</div>
-        <div class="card-tag tag-yellow">🟡 Contact board for assistance</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Dark brown to black crumbly or coffee-ground-like buildup in ears. Ferret shaking head frequently, scratching at ears.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Contact board member immediately — do not attempt to treat without guidance. Treatment typically involves prescription medication (ivermectin or selamectin). All ferrets in contact must be treated, even those without visible symptoms.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — board member will arrange appropriate treatment through our vet relationship.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>If ferret's ear is clearly painful, very swollen, or you suspect infection → 🔵 Schedule vet exam.</p></section>
-      </div>
-    </div><div class="card" data-level="yellow">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-yellow"></div>
-        <div class="card-name">Mast Cell Tumor — Ulcerated or Growing</div>
-        <div class="card-tag tag-yellow">🟡 Contact board for assistance</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Previously documented mast cell tumor that has opened, is bleeding, or has grown significantly.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Keep the area clean. Do not pick at or squeeze the tumor. Board member will assess in person and coordinate with vet for possible cryotherapy or surgical removal.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — board member should see it in person.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Active bleeding that won't stop, signs of systemic infection (fever, lethargy) → 🔴.</p></section>
-      </div>
-    </div><div class="card" data-level="yellow">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-yellow"></div>
-        <div class="card-name">Early Adrenal Disease Signs</div>
-        <div class="card-tag tag-yellow">🟡 Contact board for assistance</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Gradual hair loss (often starting at the tail), pot-bellied appearance, vulvar swelling in spayed females, increased itchiness, muscle loss. Usually develops slowly.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>This is very common in domestic US ferrets and is not an immediate emergency. Document the symptoms with photos and dates. Board member will assess and coordinate a vet appointment to confirm diagnosis and discuss deslorelin implant (Suprelorin) or other management.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — board member will make the vet appointment.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Adrenal disease alone is rarely an emergency unless combined with severe anemia or other crisis signs.</p></section>
-      </div>
-    </div><div class="card" data-level="yellow">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-yellow"></div>
-        <div class="card-name">Weight Loss (Gradual)</div>
-        <div class="card-tag tag-yellow">🟡 Contact board for assistance</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Ferret visibly thinner over days to weeks. You can feel spine or ribs more prominently. Still eating but possibly less than usual.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Offer highly palatable food (chicken baby food, warm kibble soup). Weigh ferret if scale available. Document and contact board member. Gradual weight loss often signals insulinoma, adrenal disease, or dental pain.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — board member will assess and likely schedule a vet appointment.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Rapid weight loss, refusal to eat, or combined with other symptoms → 🔵 or 🔴.</p></section>
-      </div>
-    </div><div class="card" data-level="yellow">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-yellow"></div>
-        <div class="card-name">Dental Disease / Broken Tooth</div>
-        <div class="card-tag tag-yellow">🟡 Contact board for assistance</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Visible broken or discolored tooth, bad breath, excessive drooling unrelated to low blood sugar, reluctance to eat hard kibble.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Soften food immediately — soak kibble in warm water or offer chicken baby food. Contact board member. Note that pawing at the mouth can also indicate nausea from low blood sugar — rule that out first.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — board member will coordinate a vet dental exam.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>If ferret stops eating entirely or is in clear pain → 🔵 or sooner.</p></section>
-      </div>
-    </div><div class="card" data-level="blue">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-blue"></div>
-        <div class="card-name">Insulinoma — Confirmed Diagnosis, Medical Management</div>
-        <div class="card-tag tag-blue">🔵 Vet appt — contact board to schedule</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Ferret with known insulinoma having more frequent episodes or appearing to need medication adjustment. Current management no longer keeping symptoms controlled.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Do not adjust medications without vet guidance. Manage episodes at home per the green card. Contact board member to schedule a glucose check and medication review.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — contact the board. We will arrange a time slot with Avon Lake Animal Clinic for you.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Increasing seizure frequency or unresponsive episodes → 🔴.</p></section>
-      </div>
-    </div><div class="card" data-level="blue">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-blue"></div>
-        <div class="card-name">Ear Mites — Confirmed, Requires Prescription</div>
-        <div class="card-tag tag-blue">🔵 Vet appt — contact board to schedule</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Board member has confirmed ear mites and prescription treatment is needed.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Board member will schedule with Avon Lake Animal Clinic. All in-contact ferrets must be treated.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Board is coordinating the appointment with Avon Lake Animal Clinic.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>If ears become very painful or secondary infection develops → bump timeline up.</p></section>
-      </div>
-    </div><div class="card" data-level="blue">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-blue"></div>
-        <div class="card-name">Bladder Stones / Urinary Issues</div>
-        <div class="card-tag tag-blue">🔵 Vet appt — contact board to schedule</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Visiting litter box frequently with little output, straining, crying out when urinating, blood-tinged urine.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Monitor closely. Ensure fresh water is always available. Contact board member immediately — urinary issues can escalate very quickly, especially in males.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — contact board immediately. We will arrange an urgent appointment with Avon Lake Animal Clinic.</p>
-        </section>
-        <div class="alert alert-red">⚠️ Male ferrets with urinary blockage can die within hours. If straining with NO urine output → 🔴 Emergency now.</div>
-        <section><h4>When to escalate</h4><p>No urine output + straining → 🔴 Emergency immediately. Do not wait.</p></section>
-      </div>
-    </div><div class="card" data-level="blue">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-blue"></div>
-        <div class="card-name">Lymphoma Suspicion</div>
-        <div class="card-tag tag-blue">🔵 Vet appt — contact board to schedule</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Enlarged lymph nodes (lumps under jaw, armpit, groin), significant unexplained weight loss, chronic lethargy, enlarged spleen detectable on palpation.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Lymphoma is one of the most common cancers in ferrets. Contact board member right away. Vet evaluation with bloodwork and possibly ultrasound is needed for diagnosis.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — contact the board. We will arrange a time slot with Avon Lake Animal Clinic for you.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Severe breathing difficulty or sudden collapse → 🔴.</p></section>
-      </div>
-    </div><div class="card" data-level="blue">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-blue"></div>
-        <div class="card-name">Heart Disease Signs</div>
-        <div class="card-tag tag-blue">🔵 Vet appt — contact board to schedule</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Hind leg weakness without low blood sugar, coughing, labored breathing, distended abdomen, exercise intolerance.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Ferrets over 3 years are at risk for cardiomyopathy. Contact board member. Avoid stress and excitement. Vet will need ECG/echocardiogram for diagnosis.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — contact the board. We will arrange a time slot with Avon Lake Animal Clinic for you.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Severe breathing difficulty, open-mouth breathing, or blue-tinged gums → 🔴 Emergency immediately.</p></section>
-      </div>
-    </div><div class="card" data-level="blue">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-blue"></div>
-        <div class="card-name">Persistent or Recurring Diarrhea (ECE / IBD)</div>
-        <div class="card-tag tag-blue">🔵 Vet appt — contact board to schedule</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Recurring diarrhea, green or yellow mucusy stool, 'birdseed' texture poop (grainy), significant weight loss, lethargy.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Epizootic Catarrhal Enteritis (green slime disease) and IBD are common in ferrets. Supportive care — keep hydrated, offer soft food. Board member should see the ferret and coordinate vet care.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — contact the board. We will arrange a time slot with Avon Lake Animal Clinic for you.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Rapid weight loss, dehydration, or bloody stool → 🔴.</p></section>
-      </div>
-    </div><div class="card" data-level="blue">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-blue"></div>
-        <div class="card-name">New Unidentified Lump or Mass</div>
-        <div class="card-tag tag-blue">🔵 Vet appt — contact board to schedule</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Any new lump or mass you cannot identify as a known mast cell tumor.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Do not squeeze or attempt to drain. Take a photo. Contact board member. Common benign causes in ferrets include mast cell tumors, basal cell tumors, and cysts — but all new masses need vet evaluation to confirm.</p>
-        </section>
-        <section>
-          <h4>Contact board to arrange</h4>
-          <p>Yes — send a photo immediately.</p>
-        </section>
-        
-        <section><h4>When to escalate</h4><p>Rapidly growing, ulcerated, or causing the ferret distress → bump to sooner.</p></section>
-      </div>
-    </div><div class="card" data-level="red">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-red"></div>
-        <div class="card-name">Severe Hypoglycemic Seizure / Unconsciousness</div>
-        <div class="card-tag tag-red">🔴 Emergency vet — go now</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Full body seizure, convulsing, unconscious or will not wake up, lips/gums pale or bluish.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Rub honey or Karo syrup on gums immediately — do NOT pour liquid into mouth if unconscious (aspiration risk). Keep ferret warm and on its side. Leave for emergency vet NOW. Call while driving.</p>
-        </section>
-        <section>
-          <h4>Board contact</h4>
-          <p>Call board while in transit — do not delay leaving.</p>
-        </section>
-        <div class="alert alert-red">🚨 Do not wait. Prolonged hypoglycemia causes irreversible brain damage.</div>
-        
-      </div>
-    </div><div class="card" data-level="red">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-red"></div>
-        <div class="card-name">Complete Urinary Blockage (No Urine Output)</div>
-        <div class="card-tag tag-red">🔴 Emergency vet — go now</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Ferret straining in litter box repeatedly with zero urine output. May be crying out. Abdomen may feel hard.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>This is a life-threatening emergency. Go to the vet immediately. Male ferrets are especially at risk. Do not delay to try home remedies.</p>
-        </section>
-        <section>
-          <h4>Board contact</h4>
-          <p>Call while driving.</p>
-        </section>
-        <div class="alert alert-red">🚨 Ferrets can die from a complete urinary blockage within hours.</div>
-        
-      </div>
-    </div><div class="card" data-level="red">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-red"></div>
-        <div class="card-name">Severe Difficulty Breathing</div>
-        <div class="card-tag tag-red">🔴 Emergency vet — go now</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Open-mouth breathing, rapid or labored breaths, blue or grey gums or tongue, wheezing at rest.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Keep the ferret calm and cool. Do not restrain tightly. Go to emergency vet immediately.</p>
-        </section>
-        <section>
-          <h4>Board contact</h4>
-          <p>Call while driving.</p>
-        </section>
-        <div class="alert alert-red">🚨 Respiratory distress is always an emergency.</div>
-        
-      </div>
-    </div><div class="card" data-level="red">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-red"></div>
-        <div class="card-name">GI Obstruction / Swallowed Object</div>
-        <div class="card-tag tag-red">🔴 Emergency vet — go now</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Repeated vomiting or dry heaving, not passing stool, painful abdomen, lethargy, known exposure to foam rubber, rubber, or plastic objects.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Do not try to induce vomiting. Go to emergency vet immediately. GI obstruction requires surgery. Ferrets love to chew and swallow rubber, foam, and fabric — this is a common killer in young ferrets.</p>
-        </section>
-        <section>
-          <h4>Board contact</h4>
-          <p>Call while driving.</p>
-        </section>
-        <div class="alert alert-red">🚨 Ferrets can deteriorate rapidly from GI blockage. Do not wait.</div>
-        
-      </div>
-    </div><div class="card" data-level="red">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-red"></div>
-        <div class="card-name">Suspected Canine Distemper</div>
-        <div class="card-tag tag-red">🔴 Emergency vet — go now</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Rash on chin or groin, crusty eyes and nose, extreme lethargy, neurological symptoms. Ferret may have had unverified vaccination status.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Isolate the ferret immediately from all other animals in the home (dogs and other ferrets are susceptible). Go to the vet. Distemper is almost always fatal in ferrets. Confirm vaccination status with the board.</p>
-        </section>
-        <section>
-          <h4>Board contact</h4>
-          <p>Call immediately — other animals in foster home may be at risk.</p>
-        </section>
-        <div class="alert alert-red">🚨 Canine distemper is fatal in ferrets and spreads to dogs and other mustelids. Isolate immediately.</div>
-        
-      </div>
-    </div><div class="card" data-level="red">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-red"></div>
-        <div class="card-name">Trauma (Fall, Bite, Crushing Injury)</div>
-        <div class="card-tag tag-red">🔴 Emergency vet — go now</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Ferret was dropped, stepped on, bitten by another animal, or fell from height. May be limping, crying, or non-weight-bearing.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Do not try to splint or manipulate injured limb. Keep ferret as still as possible in a small, warm carrier. Go to emergency vet.</p>
-        </section>
-        <section>
-          <h4>Board contact</h4>
-          <p>Call while driving.</p>
-        </section>
-        <div class="alert alert-red">🚨 Internal injuries may not be visible. Even if the ferret seems okay, get evaluated.</div>
-        
-      </div>
-    </div><div class="card" data-level="red">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-red"></div>
-        <div class="card-name">Toxin Ingestion / Poisoning</div>
-        <div class="card-tag tag-red">🔴 Emergency vet — go now</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Ferret ingested a household chemical, plant, medication, or human food known to be toxic. May be drooling excessively, seizing, or lethargic.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Bring the substance container or plant to the vet. Do not induce vomiting unless specifically instructed by a vet. Call ASPCA Animal Poison Control (888-426-4435) if vet is unavailable.</p>
-        </section>
-        <section>
-          <h4>Board contact</h4>
-          <p>Call while driving.</p>
-        </section>
-        <div class="alert alert-red">🚨 Common ferret hazards: ibuprofen, Tylenol, xylitol, raisins, grapes, chocolate, many houseplants.</div>
-        
-      </div>
-    </div><div class="card" data-level="red">
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-red"></div>
-        <div class="card-name">Heat Stroke</div>
-        <div class="card-tag tag-red">🔴 Emergency vet — go now</div>
-        <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"></path></svg>
-      </div>
-      <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>Ferret is limp, unresponsive, panting (unusual in ferrets), or extremely lethargic in hot conditions. Ferrets cannot tolerate temperatures above ~80°F.</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>Move to a cool area immediately. Apply cool (not cold) wet cloths to paws and armpits. Do NOT submerge in cold water — can cause shock. Fan gently. Go to emergency vet.</p>
-        </section>
-        <section>
-          <h4>Board contact</h4>
-          <p>Call while driving.</p>
-        </section>
-        <div class="alert alert-red">🚨 Heat stroke in ferrets is rapidly fatal. Ferrets do not pant to cool down like dogs.</div>
-        
-      </div>
-    </div></div>
-<div class="no-results" id="noResults" style="display: none;">No matching conditions found. Try a different search term.</div>
+<!-- CARDS -->
+<div class="cards" id="cardContainer"></div>
+<div class="no-results" id="noResults">No matching conditions found. Try a different keyword.</div>
 
+<!-- BOTTOM SECTIONS -->
+<div class="bottom-sections">
+
+  <div class="bottom-section">
+    <div class="bottom-section-title">⚡ Know Before It Happens</div>
+    <div class="know-list">
+      <div class="know-item"><span class="ki">🩸</span><div><strong>Low blood sugar (insulinoma):</strong> Rub Karo syrup or honey on the gums. Follow with protein once alert. Never pour liquid into an unconscious ferret. Call board. Seizing or unconscious → emergency vet immediately.</div></div>
+      <div class="know-item"><span class="ki">🌡️</span><div><strong>Heat stroke (above 80°F):</strong> Move to a cool area. Apply cool damp cloth to paws and armpits. Do NOT use cold water. Emergency vet immediately.</div></div>
+      <div class="know-item"><span class="ki">🚫</span><div><strong>Swallowed rubber or foam:</strong> Repeated vomiting, no stool, painful belly → emergency vet now. Keep all foam, rubber, and soft plastics away from ferrets at all times.</div></div>
+      <div class="know-item"><span class="ki">💊</span><div><strong>Keep on hand:</strong> Karo syrup or honey · Benadryl cream · Ferret Lax · Chicken baby food · Styptic powder</div></div>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <div class="bottom-section-title">✅ Is This Normal? — Don't Panic</div>
+    <div class="normal-list">
+      <div class="normal-item"><span class="ni">😴</span><div><strong>Dead sleep</strong> — Ferrets sleep so deeply they look lifeless and limp. Gently rustle them — if they wake within 30–60 seconds, they're fine.</div></div>
+      <div class="normal-item"><span class="ni">😄</span><div><strong>Dooking and bouncing</strong> — A happy clucking sound with erratic bouncing is the "weasel war dance." It means your ferret is excited and playing.</div></div>
+      <div class="normal-item"><span class="ni">💨</span><div><strong>Musky smell</strong> — Some odor is completely normal. A sudden strong change in smell can signal illness.</div></div>
+      <div class="normal-item"><span class="ni">🤧</span><div><strong>A few sneezes</strong> — Normal, especially after digging in litter. Persistent sneezing with discharge is not normal.</div></div>
+      <div class="normal-item"><span class="ni">💤</span><div><strong>Sleeping 14–18 hours a day</strong> — Completely normal. Ferrets are most active at dawn and dusk and sleep a lot in between.</div></div>
+      <div class="normal-item"><span class="ni">😬</span><div><strong>Hissing</strong> — Normal when startled or annoyed. Not a sign of aggression toward you.</div></div>
+      <div class="normal-item"><span class="ni">💩</span><div><strong>Slightly soft stools</strong> — Can happen after a diet or environment change. Monitor 24 hours. If no blood and it resolves, usually fine.</div></div>
+    </div>
+  </div>
+
+  <div class="bottom-section">
+    <div class="bottom-section-title">📅 Seasonal Reminders</div>
+    <div class="season-list">
+      <div class="season-item"><span class="sbadge sb-summer">Summer</span><div>Ferrets cannot handle heat. Keep their space below 75–80°F. Never leave near a sunny window or in a car. Heat stroke can kill in minutes.</div></div>
+      <div class="season-item"><span class="sbadge sb-summer">Summer</span><div>Confirm the ferret is on monthly heartworm prevention. Contact board if unsure.</div></div>
+      <div class="season-item"><span class="sbadge sb-winter">Winter</span><div>Ferrets may sleep much more than usual and be hard to rouse — this is called torpor and is normal. Monitor closely as it can look like illness.</div></div>
+      <div class="season-item"><span class="sbadge sb-winter">Winter</span><div>Ferrets can catch human flu. Wash hands before handling and avoid close contact when you're sick.</div></div>
+      <div class="season-item"><span class="sbadge sb-spring">Spring</span><div>Adrenal disease flare-ups are more common as daylight hours increase. Watch for new hair loss or behavior changes.</div></div>
+      <div class="season-item"><span class="sbadge sb-always">Always</span><div>Keep foam, rubber toys, shoe insoles, and soft plastics out of reach. Swallowing these is a leading preventable cause of death.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <strong>Important:</strong> This guide is for foster reference only and does not replace veterinary advice. All protocols have been developed in partnership with Avon Lake Animal Clinic. When in doubt, call a board member — that's what we're here for. This document should be reviewed and re-approved by our vet partner annually or when protocols change.
+  <strong>Ferrets Unlimited Rescue Services (FURS)</strong> · ferretsunlimited.org<br>
+  This guide is for foster reference only and does not replace veterinary advice. Developed in partnership with Avon Lake Animal Clinic. When in doubt, call the board.
 </footer>
+
+</div>
 
 <script>
 const DATA = [
-  // ── GREEN ──
-  {
-    level: "green",
-    name: "Nail Trimming",
-    tag: "🟢 Foster can handle independently",
-    keywords: ["nail","claw","trim","long nails"],
-    signs: "Nails clicking on hard surfaces, curling, catching on fabric.",
-    action: "Call a board member first time for a video walkthrough. Use small pet or human nail clippers. Trim just the clear tip — avoid the pink quick (blood vessel). If you hit the quick and it bleeds, apply styptic powder or cornstarch with light pressure.",
-    boardCall: "Yes — first time. After you're trained, you can do this independently.",
-    escalate: "If nails are severely curled into the foot pad or paw is swollen/infected → 🔵 Schedule vet."
-  },
-  {
-    level: "green",
-    name: "Ear Cleaning (Mild Brown Buildup)",
-    tag: "🟢 Foster can handle independently",
-    keywords: ["ear","dirty ears","brown","cleaning"],
-    signs: "Moderate brown waxy buildup in ears, no odor, ferret not scratching excessively.",
-    action: "Use a ferret-safe or kitten ear cleaner. Dampen a cotton ball — never insert cotton swabs deep into the canal. Wipe visible wax gently. Contact a board member before cleaning if you've never done it.",
-    boardCall: "Yes — first time or if unsure.",
-    escalate: "If buildup is dark/black and crumbly with head shaking or scratching → likely ear mites. See that card (🔵)."
-  },
-  {
-    level: "green",
-    name: "Mild Low Blood Sugar Episode (Known Insulinomic Ferret)",
-    tag: "🟢 Foster can handle independently",
-    keywords: ["low blood sugar","hypoglycemia","drooling","pawing mouth","staring","weak","insulinoma","wobbly"],
-    signs: "Glassy stare, drooling, pawing at mouth, wobbly hind legs, seems dazed or slow. Ferret is still conscious.",
-    action: "Immediately rub a small amount of Karo syrup, honey, or Nutrical on the gums. Do NOT give liquid to an unconscious ferret. Follow with a small protein meal (chicken baby food, softened kibble) once alert — the sugar spike will be followed by a crash without protein. Keep ferret warm. Call board member right away.",
-    boardCall: "Yes — immediately. Even if ferret recovers, we need to know.",
-    alert: "alert-yellow",
-    alertText: "⚠️ Every episode must be reported — frequency tells us if medical management needs adjusting.",
-    escalate: "If ferret does not respond within 2–3 minutes, loses consciousness, or has a full seizure → 🔴 Emergency vet immediately."
-  },
-  {
-    level: "green",
-    name: "Mast Cell Tumor — Small, Non-Ulcerated (Known)",
-    tag: "🟢 Foster can handle independently",
-    keywords: ["mast cell","tumor","lump","bump","skin","itchy","raised","scab"],
-    signs: "Small (under 1cm), circular, slightly raised reddish bump on skin. May wax and wane. Ferret mostly unbothered by it.",
-    action: "Apply Benadryl cream (diphenhydramine topical) 2–3x daily if ferret is itching at it. This reduces histamine production and irritation. Take a photo and send to board member. Do NOT attempt to freeze with OTC wart removers — this can damage tissue.",
-    boardCall: "Yes — send a photo for documentation. Board member will advise whether it needs vet evaluation.",
-    alert: "alert-yellow",
-    alertText: "⚠️ If the tumor ulcerates, grows rapidly, or becomes infected — escalate to 🔵 or 🔴.",
-    escalate: "If new, unknown lump: treat as 🔵 until identified by vet."
-  },
-  {
-    level: "green",
-    name: "Hairball / Minor Vomiting (Isolated Incident)",
-    tag: "🟢 Foster can handle independently",
-    keywords: ["vomit","vomiting","hairball","threw up","nausea"],
-    signs: "Single vomiting episode, no blood, ferret alert afterward and eating normally.",
-    action: "Offer fresh water and monitor. Give a small amount of Ferret Lax or Petromalt (hairball remedy) per package instructions. Keep food available.",
-    boardCall: "Report within the day.",
-    escalate: "Repeated vomiting, blood, lethargy, or not eating → 🔴 Emergency. Ferrets can block quickly."
-  },
-  {
-    level: "green",
-    name: "Mild Diarrhea (Single Day, No Blood)",
-    tag: "🟢 Foster can handle independently",
-    keywords: ["diarrhea","loose stool","poop","mucus","green stool","yellow stool"],
-    signs: "Loose or soft stools, no blood, ferret otherwise alert. May follow a diet change.",
-    action: "Ensure fresh water access. Avoid diet changes. Monitor closely. Keep a photo of the stool to share with board.",
-    boardCall: "Yes — report same day with a description or photo of stool.",
-    escalate: "Blood in stool, black tarry stool, or diarrhea lasting more than 24–48 hrs → 🔵 or 🔴 depending on severity."
-  },
-  {
-    level: "green",
-    name: "Minor Cuts or Scrapes",
-    tag: "🟢 Foster can handle independently",
-    keywords: ["cut","scrape","wound","bleeding","scratch"],
-    signs: "Small wound from play or cage. Minor bleeding that stops within a few minutes.",
-    action: "Clean with dilute chlorhexidine solution or saline. Apply gentle pressure with clean gauze if still bleeding. Do NOT use hydrogen peroxide — too harsh for ferret tissue. Keep the area clean and watch for infection.",
-    boardCall: "Yes — notify and send a photo.",
-    escalate: "Deep puncture wounds, wounds that won't stop bleeding, or signs of infection (swelling, discharge, heat) → 🔵 or 🔴."
-  },
-  {
-    level: "green",
-    name: "Sneezing (Occasional, No Other Symptoms)",
-    tag: "🟢 Foster can handle independently",
-    keywords: ["sneezing","sneeze","cold","runny nose"],
-    signs: "Occasional sneezing, no nasal discharge, eating and active normally.",
-    action: "Check for dust in bedding or litter. Switch to unscented, low-dust litter. Monitor.",
-    boardCall: "Only if sneezing increases or other symptoms appear.",
-    escalate: "Persistent sneezing, nasal discharge, lethargy, or difficulty breathing → 🔵."
-  },
+  {level:"green",name:"Nail Trimming",tag:"🟢 Foster handles",
+   keywords:["nail","claw","trim","clicking","long nails"],
+   signs:"Nails clicking on hard floors, curling, or catching on fabric.",
+   action:"Use small pet nail clippers. Trim only the clear tip — avoid the pink quick inside. If the quick bleeds, press styptic powder or cornstarch on it gently.",
+   board:"Optional — ask board for a video walkthrough the first time. After that, handle on your own.",
+   escalate:"Nails curled into the foot pad, or paw is swollen or infected → blue.",
+   alert:null},
+  {level:"green",name:"Ear Cleaning (Mild Brown Buildup)",tag:"🟢 Foster handles",
+   keywords:["ear","dirty ear","brown","wax","ear cleaning"],
+   signs:"Moderate brown waxy buildup, no strong smell, ferret not shaking head or scratching.",
+   action:"Dampen a cotton ball with ferret-safe or kitten ear cleaner. Wipe visible wax gently. Do not push swabs into the ear canal.",
+   board:"Optional — ask board your first time.",
+   escalate:"Dark black crumbly buildup with head shaking → ear mites. See that card (yellow).",
+   alert:null},
+  {level:"green",name:"Mild Low Blood Sugar (Known Insulinomic Ferret)",tag:"🟢 Foster handles",
+   keywords:["low blood sugar","hypoglycemia","drooling","pawing mouth","glassy","stare","wobbly","dazed","weak","insulinoma"],
+   signs:"Glassy stare, drooling, pawing at mouth, wobbly back legs, seems dazed. Ferret is still conscious.",
+   action:"Rub Karo syrup, honey, or Nutrical on the gums right away. Do NOT pour liquid into mouth if unconscious. Once alert, feed a small protein meal — chicken baby food or softened kibble. Keep ferret warm.",
+   board:"Yes — call board immediately even if the ferret recovers.",
+   escalate:"No response in 2–3 minutes, loses consciousness, or has a full seizure → emergency vet now.",
+   alert:{level:"yellow",text:"⚠️ Report every episode to the board — how often it happens tells us if medication needs adjusting."}},
+  {level:"green",name:"Known Mast Cell Tumor — Small, Not Open",tag:"🟢 Foster handles",
+   keywords:["mast cell","tumor","lump","bump","skin bump","itchy lump","raised bump","reddish bump","scab"],
+   signs:"Small (under 1cm), slightly raised reddish bump. May come and go. Ferret mostly ignores it.",
+   action:"If the ferret is scratching it, apply Benadryl cream (diphenhydramine) 2–3 times a day. Take a photo and send to board. Do NOT use OTC wart freezers — they can damage tissue.",
+   board:"Optional — send a photo. Board will advise if vet is needed.",
+   escalate:"Tumor opens, bleeds, grows fast, or gets infected → yellow or red.",
+   alert:null},
+  {level:"green",name:"Single Vomiting Episode / Hairball",tag:"🟢 Foster handles",
+   keywords:["vomit","vomiting","hairball","threw up","retching","nausea"],
+   signs:"One vomiting episode, no blood, ferret alert and eating normally after.",
+   action:"Offer fresh water. Give a small amount of Ferret Lax or Petromalt. Keep food available and monitor.",
+   board:"Report to board same day.",
+   escalate:"Vomiting more than once, any blood, won't eat, or seems lethargic → emergency vet. Ferrets can block quickly.",
+   alert:null},
+  {level:"green",name:"Mild Diarrhea (One Day, No Blood)",tag:"🟢 Foster handles",
+   keywords:["diarrhea","loose stool","soft poop","runny stool"],
+   signs:"Loose stools for less than a day, no blood, ferret otherwise alert and active.",
+   action:"Make sure fresh water is always available. Don't change the diet. Monitor closely and take a photo of the stool.",
+   board:"Yes — report same day.",
+   escalate:"Blood in stool, black tarry stool, or diarrhea lasting more than 48 hours → blue or red.",
+   alert:null},
+  {level:"green",name:"Minor Cut or Scrape",tag:"🟢 Foster handles",
+   keywords:["cut","scrape","scratch","small wound","bleeding minor"],
+   signs:"Small wound, minor bleeding that stops within a few minutes.",
+   action:"Clean with saline or dilute chlorhexidine. Press clean gauze if still bleeding. Do NOT use hydrogen peroxide. Keep clean and watch for infection.",
+   board:"Yes — notify board and send a photo.",
+   escalate:"Deep puncture, won't stop bleeding, or shows signs of infection → blue or red.",
+   alert:null},
+  {level:"green",name:"Occasional Sneezing (No Other Symptoms)",tag:"🟢 Foster handles",
+   keywords:["sneezing","sneeze","occasional sneeze"],
+   signs:"A few sneezes, no nasal discharge, eating and active normally.",
+   action:"Check for dust in litter or bedding. Switch to unscented low-dust litter if needed. Monitor.",
+   board:"Only if sneezing becomes frequent or other symptoms appear.",
+   escalate:"Persistent sneezing, discharge from nose, or labored breathing → blue.",
+   alert:null},
 
-  // ── YELLOW ──
-  {
-    level: "yellow",
-    name: "Ear Mites",
-    tag: "🟡 Contact board for assistance",
-    keywords: ["ear mites","dark ear","black ear","shaking head","scratching ears","ear","mites"],
-    signs: "Dark brown to black crumbly or coffee-ground-like buildup in ears. Ferret shaking head frequently, scratching at ears.",
-    action: "Contact board member immediately — do not attempt to treat without guidance. Treatment typically involves prescription medication (ivermectin or selamectin). All ferrets in contact must be treated, even those without visible symptoms.",
-    boardCall: "Yes — board member will arrange appropriate treatment through our vet relationship.",
-    escalate: "If ferret's ear is clearly painful, very swollen, or you suspect infection → 🔵 Schedule vet exam."
-  },
-  {
-    level: "yellow",
-    name: "Mast Cell Tumor — Ulcerated or Growing",
-    tag: "🟡 Contact board for assistance",
-    keywords: ["mast cell","ulcerated","infected lump","growing tumor","bleeding lump"],
-    signs: "Previously documented mast cell tumor that has opened, is bleeding, or has grown significantly.",
-    action: "Keep the area clean. Do not pick at or squeeze the tumor. Board member will assess in person and coordinate with vet for possible cryotherapy or surgical removal.",
-    boardCall: "Yes — board member should see it in person.",
-    escalate: "Active bleeding that won't stop, signs of systemic infection (fever, lethargy) → 🔴."
-  },
-  {
-    level: "yellow",
-    name: "Early Adrenal Disease Signs",
-    tag: "🟡 Contact board for assistance",
-    keywords: ["hair loss","alopecia","bald","itchy","pot belly","vulva swelling","muscle loss","adrenal"],
-    signs: "Gradual hair loss (often starting at the tail), pot-bellied appearance, vulvar swelling in spayed females, increased itchiness, muscle loss. Usually develops slowly.",
-    action: "This is very common in domestic US ferrets and is not an immediate emergency. Document the symptoms with photos and dates. Board member will assess and coordinate a vet appointment to confirm diagnosis and discuss deslorelin implant (Suprelorin) or other management.",
-    boardCall: "Yes — board member will make the vet appointment.",
-    escalate: "Adrenal disease alone is rarely an emergency unless combined with severe anemia or other crisis signs."
-  },
-  {
-    level: "yellow",
-    name: "Weight Loss (Gradual)",
-    tag: "🟡 Contact board for assistance",
-    keywords: ["weight loss","thin","skinny","losing weight","not eating well","appetite"],
-    signs: "Ferret visibly thinner over days to weeks. You can feel spine or ribs more prominently. Still eating but possibly less than usual.",
-    action: "Offer highly palatable food (chicken baby food, warm kibble soup). Weigh ferret if scale available. Document and contact board member. Gradual weight loss often signals insulinoma, adrenal disease, or dental pain.",
-    boardCall: "Yes — board member will assess and likely schedule a vet appointment.",
-    escalate: "Rapid weight loss, refusal to eat, or combined with other symptoms → 🔵 or 🔴."
-  },
-  {
-    level: "yellow",
-    name: "Dental Disease / Broken Tooth",
-    tag: "🟡 Contact board for assistance",
-    keywords: ["tooth","teeth","dental","broken tooth","drooling","pawing mouth","bad breath"],
-    signs: "Visible broken or discolored tooth, bad breath, excessive drooling unrelated to low blood sugar, reluctance to eat hard kibble.",
-    action: "Soften food immediately — soak kibble in warm water or offer chicken baby food. Contact board member. Note that pawing at the mouth can also indicate nausea from low blood sugar — rule that out first.",
-    boardCall: "Yes — board member will coordinate a vet dental exam.",
-    escalate: "If ferret stops eating entirely or is in clear pain → 🔵 or sooner."
-  },
+  {level:"yellow",name:"Ear Mites",tag:"🟡 Call board",
+   keywords:["ear mites","dark ear","black crumbly ear","shaking head","scratching ears","coffee grounds ear"],
+   signs:"Dark brown to black crumbly buildup in ears (looks like coffee grounds). Ferret shaking head or scratching ears a lot.",
+   action:"Call board immediately. Do not treat without guidance — prescription medication is required. Every ferret in the home must be treated, even if they show no symptoms.",
+   board:"Yes — board will arrange prescription treatment through our vet.",
+   escalate:"Ear seems very painful, swollen, or infected → blue, sooner.",
+   alert:null},
+  {level:"yellow",name:"Mast Cell Tumor — Open or Growing",tag:"🟡 Call board",
+   keywords:["mast cell open","bleeding lump","ulcerated tumor","growing bump","infected lump"],
+   signs:"A known mast cell tumor that has opened, started bleeding, grown noticeably, or is clearly bothering the ferret.",
+   action:"Keep the area clean. Do not pick at or squeeze it. Board member will come assess and coordinate vet care.",
+   board:"Yes — board should see it in person.",
+   escalate:"Won't stop bleeding, or ferret seems systemically unwell (fever, lethargic) → emergency vet.",
+   alert:null},
+  {level:"yellow",name:"Early Adrenal Disease Signs",tag:"🟡 Call board",
+   keywords:["hair loss","alopecia","bald tail","bald","itchy skin","pot belly","swollen vulva","muscle loss","adrenal"],
+   signs:"Gradual hair loss often starting at the tail, pot belly, swollen vulva in spayed females, itchy skin, or muscle loss. Develops slowly over weeks.",
+   action:"Not an immediate emergency. Document with dated photos. Board will coordinate a vet appointment to confirm and discuss treatment.",
+   board:"Yes — board will make the vet appointment.",
+   escalate:"Rarely an emergency on its own, unless combined with other serious symptoms.",
+   alert:null},
+  {level:"yellow",name:"Gradual Weight Loss",tag:"🟡 Call board",
+   keywords:["weight loss","thin","skinny","losing weight","ribs","spine showing","eating less"],
+   signs:"Ferret visibly thinner over days to weeks. Ribs or spine more noticeable. Still eating but possibly less.",
+   action:"Offer highly palatable food — chicken baby food, warm kibble soup, or Carnivore Care. Weigh ferret if possible. Contact board.",
+   board:"Yes — board will assess and arrange a vet appointment.",
+   escalate:"Rapid weight loss, stops eating entirely, or combined with other symptoms → blue or red.",
+   alert:null},
+  {level:"yellow",name:"Broken Tooth / Dental Pain",tag:"🟡 Call board",
+   keywords:["tooth","broken tooth","dental","bad breath","grinding teeth","drooling","won't eat hard food"],
+   signs:"Visible broken or dark tooth, bad breath, drooling unrelated to blood sugar, or refusing hard kibble.",
+   action:"Soften food right away — soak kibble in warm water or offer chicken baby food. Contact board. Note: pawing at the mouth can also mean low blood sugar — rule that out first.",
+   board:"Yes — board will coordinate a dental exam.",
+   escalate:"Stops eating entirely or in obvious pain → escalate sooner.",
+   alert:null},
 
-  // ── BLUE ──
-  {
-    level: "blue",
-    name: "Insulinoma — Confirmed Diagnosis, Medical Management",
-    tag: "🔵 Vet appt — contact board to schedule",
-    keywords: ["insulinoma","blood sugar","management","prednisone","prednisolone","recurring episodes","pancreas"],
-    signs: "Ferret with known insulinoma having more frequent episodes or appearing to need medication adjustment. Current management no longer keeping symptoms controlled.",
-    action: "Do not adjust medications without vet guidance. Manage episodes at home per the green card. Contact board member to schedule a glucose check and medication review.",
-    boardCall: "Yes — contact the board. We will arrange a time slot with Avon Lake Animal Clinic for you.",
-    escalate: "Increasing seizure frequency or unresponsive episodes → 🔴."
-  },
-  {
-    level: "blue",
-    name: "Ear Mites — Confirmed, Requires Prescription",
-    tag: "🔵 Vet appt — contact board to schedule",
-    keywords: ["ear mites","prescription","ivermectin","selamectin","revolution","treatment"],
-    signs: "Board member has confirmed ear mites and prescription treatment is needed.",
-    action: "Board member will schedule with Avon Lake Animal Clinic. All in-contact ferrets must be treated.",
-    boardCall: "Board is coordinating the appointment with Avon Lake Animal Clinic.",
-    escalate: "If ears become very painful or secondary infection develops → bump timeline up."
-  },
-  {
-    level: "blue",
-    name: "Bladder Stones / Urinary Issues",
-    tag: "🔵 Vet appt — contact board to schedule",
-    keywords: ["bladder","urinary","straining","litter box","urination","stones","crystals","blood in urine"],
-    signs: "Visiting litter box frequently with little output, straining, crying out when urinating, blood-tinged urine.",
-    action: "Monitor closely. Ensure fresh water is always available. Contact board member immediately — urinary issues can escalate very quickly, especially in males.",
-    boardCall: "Yes — contact board immediately. We will arrange an urgent appointment with Avon Lake Animal Clinic.",
-    alert: "alert-red",
-    alertText: "⚠️ Male ferrets with urinary blockage can die within hours. If straining with NO urine output → 🔴 Emergency now.",
-    escalate: "No urine output + straining → 🔴 Emergency immediately. Do not wait."
-  },
-  {
-    level: "blue",
-    name: "Lymphoma Suspicion",
-    tag: "🔵 Vet appt — contact board to schedule",
-    keywords: ["lymphoma","lymph nodes","swollen","cancer","mass","spleen","tumor","weight loss lethargy"],
-    signs: "Enlarged lymph nodes (lumps under jaw, armpit, groin), significant unexplained weight loss, chronic lethargy, enlarged spleen detectable on palpation.",
-    action: "Lymphoma is one of the most common cancers in ferrets. Contact board member right away. Vet evaluation with bloodwork and possibly ultrasound is needed for diagnosis.",
-    boardCall: "Yes — contact the board. We will arrange a time slot with Avon Lake Animal Clinic for you.",
-    escalate: "Severe breathing difficulty or sudden collapse → 🔴."
-  },
-  {
-    level: "blue",
-    name: "Heart Disease Signs",
-    tag: "🔵 Vet appt — contact board to schedule",
-    keywords: ["heart","cardiomyopathy","coughing","breathing","hind leg weakness","abdomen swollen","ascites"],
-    signs: "Hind leg weakness without low blood sugar, coughing, labored breathing, distended abdomen, exercise intolerance.",
-    action: "Ferrets over 3 years are at risk for cardiomyopathy. Contact board member. Avoid stress and excitement. Vet will need ECG/echocardiogram for diagnosis.",
-    boardCall: "Yes — contact the board. We will arrange a time slot with Avon Lake Animal Clinic for you.",
-    escalate: "Severe breathing difficulty, open-mouth breathing, or blue-tinged gums → 🔴 Emergency immediately."
-  },
-  {
-    level: "blue",
-    name: "Persistent or Recurring Diarrhea (ECE / IBD)",
-    tag: "🔵 Vet appt — contact board to schedule",
-    keywords: ["ECE","epizootic","green slime","birdseed poop","mucus poop","diarrhea recurring","IBD","inflammatory bowel"],
-    signs: "Recurring diarrhea, green or yellow mucusy stool, 'birdseed' texture poop (grainy), significant weight loss, lethargy.",
-    action: "Epizootic Catarrhal Enteritis (green slime disease) and IBD are common in ferrets. Supportive care — keep hydrated, offer soft food. Board member should see the ferret and coordinate vet care.",
-    boardCall: "Yes — contact the board. We will arrange a time slot with Avon Lake Animal Clinic for you.",
-    escalate: "Rapid weight loss, dehydration, or bloody stool → 🔴."
-  },
-  {
-    level: "blue",
-    name: "New Unidentified Lump or Mass",
-    tag: "🔵 Vet appt — contact board to schedule",
-    keywords: ["lump","mass","bump","new growth","swelling","cyst","unknown"],
-    signs: "Any new lump or mass you cannot identify as a known mast cell tumor.",
-    action: "Do not squeeze or attempt to drain. Take a photo. Contact board member. Common benign causes in ferrets include mast cell tumors, basal cell tumors, and cysts — but all new masses need vet evaluation to confirm.",
-    boardCall: "Yes — send a photo immediately.",
-    escalate: "Rapidly growing, ulcerated, or causing the ferret distress → bump to sooner."
-  },
+  {level:"blue",name:"Insulinoma — Episodes Getting More Frequent",tag:"🔵 Vet appt needed",
+   keywords:["insulinoma frequent","recurring blood sugar","medication review","glucose check","prednisone","pancreas"],
+   signs:"Known insulinomic ferret having more frequent low blood sugar episodes, or current medication is no longer keeping it under control.",
+   action:"Do not change medication without vet guidance. Keep managing individual episodes at home. Contact board to schedule a glucose check and medication review.",
+   board:"Yes — contact board. We will schedule with Avon Lake Animal Clinic.",
+   escalate:"Seizures becoming more frequent or unresponsive episodes → emergency vet.",
+   alert:null},
+  {level:"blue",name:"Urinary Issues / Bladder Stones",tag:"🔵 Vet appt needed",
+   keywords:["bladder","urinary","straining","litter box","frequent urination","blood in urine","crying urinating","crystals"],
+   signs:"Visiting litter box often with little output, straining, crying when urinating, or blood in urine.",
+   action:"Ensure fresh water is always available. Contact board immediately — urinary issues can escalate fast, especially in males.",
+   board:"Yes — contact board immediately. We will arrange an urgent appointment.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 Male ferrets: straining with ZERO urine output = emergency vet right now. A complete blockage can be fatal within hours."}},
+  {level:"blue",name:"Suspected Lymphoma",tag:"🔵 Vet appt needed",
+   keywords:["lymphoma","swollen lymph nodes","lumps under jaw","cancer","spleen enlarged","chronic lethargy","unexplained weight loss"],
+   signs:"Enlarged lumps under the jaw, in the armpits, or groin. Unexplained weight loss, prolonged lethargy, or a visibly swollen abdomen.",
+   action:"Contact board. Vet evaluation with bloodwork and possibly ultrasound needed. Lymphoma is one of the most common cancers in US ferrets.",
+   board:"Yes — contact board. We will schedule with Avon Lake Animal Clinic.",
+   escalate:"Trouble breathing or sudden collapse → emergency vet.",
+   alert:null},
+  {level:"blue",name:"Heart Disease Signs",tag:"🔵 Vet appt needed",
+   keywords:["heart","coughing","labored breathing","hind leg weakness","swollen belly","exercise intolerance","cardiomyopathy"],
+   signs:"Hind leg weakness (not from low blood sugar), persistent coughing, labored breathing at rest, or swollen abdomen. Most common in ferrets over 3 years old.",
+   action:"Keep ferret calm. Avoid any excitement or stress. Contact board to arrange evaluation.",
+   board:"Yes — contact board. We will schedule with Avon Lake Animal Clinic.",
+   escalate:"Severe breathing trouble, open-mouth breathing, or blue gums → emergency vet immediately.",
+   alert:null},
+  {level:"blue",name:"Recurring Diarrhea (ECE or IBD)",tag:"🔵 Vet appt needed",
+   keywords:["ECE","epizootic","green slime","birdseed poop","mucus stool","recurring diarrhea","IBD","yellow mucus stool"],
+   signs:"Diarrhea over multiple days, green or yellow mucusy stool, grainy 'birdseed' texture stool, weight loss, or ongoing lethargy.",
+   action:"Keep ferret hydrated and offer soft food. Contact board — ECE and IBD are both common in ferrets and need vet care.",
+   board:"Yes — contact board. We will schedule with Avon Lake Animal Clinic.",
+   escalate:"Rapid weight loss, signs of dehydration, or blood in stool → emergency vet.",
+   alert:null},
+  {level:"blue",name:"New Unidentified Lump",tag:"🔵 Vet appt needed",
+   keywords:["new lump","unknown lump","new bump","mass","swelling","cyst","hard lump","soft lump"],
+   signs:"Any new lump or mass you cannot confirm is a known mast cell tumor.",
+   action:"Do not squeeze or try to drain it. Take a photo and contact board. All new masses need a vet to confirm what they are.",
+   board:"Yes — send a photo. We will schedule with Avon Lake Animal Clinic.",
+   escalate:"Growing fast, opened, or clearly causing pain → escalate sooner.",
+   alert:null},
 
-  // ── RED ──
-  {
-    level: "red",
-    name: "Severe Hypoglycemic Seizure / Unconsciousness",
-    tag: "🔴 Emergency vet — go now",
-    keywords: ["seizure","unconscious","collapse","unresponsive","convulsing","not waking","fitting","emergency"],
-    signs: "Full body seizure, convulsing, unconscious or will not wake up, lips/gums pale or bluish.",
-    action: "Rub honey or Karo syrup on gums immediately — do NOT pour liquid into mouth if unconscious (aspiration risk). Keep ferret warm and on its side. Leave for emergency vet NOW. Call while driving.",
-    boardCall: "Call board while in transit — do not delay leaving.",
-    alert: "alert-red",
-    alertText: "🚨 Do not wait. Prolonged hypoglycemia causes irreversible brain damage."
-  },
-  {
-    level: "red",
-    name: "Complete Urinary Blockage (No Urine Output)",
-    tag: "🔴 Emergency vet — go now",
-    keywords: ["blockage","urinary blockage","no urine","straining no output","bladder stone emergency"],
-    signs: "Ferret straining in litter box repeatedly with zero urine output. May be crying out. Abdomen may feel hard.",
-    action: "This is a life-threatening emergency. Go to the vet immediately. Male ferrets are especially at risk. Do not delay to try home remedies.",
-    boardCall: "Call while driving.",
-    alert: "alert-red",
-    alertText: "🚨 Ferrets can die from a complete urinary blockage within hours."
-  },
-  {
-    level: "red",
-    name: "Severe Difficulty Breathing",
-    tag: "🔴 Emergency vet — go now",
-    keywords: ["breathing","labored breathing","open mouth breathing","gasping","blue gums","respiratory"],
-    signs: "Open-mouth breathing, rapid or labored breaths, blue or grey gums or tongue, wheezing at rest.",
-    action: "Keep the ferret calm and cool. Do not restrain tightly. Go to emergency vet immediately.",
-    boardCall: "Call while driving.",
-    alert: "alert-red",
-    alertText: "🚨 Respiratory distress is always an emergency."
-  },
-  {
-    level: "red",
-    name: "GI Obstruction / Swallowed Object",
-    tag: "🔴 Emergency vet — go now",
-    keywords: ["obstruction","swallowed","ate something","foam rubber","plastic","blocked","vomiting repeatedly","pawing mouth repeatedly"],
-    signs: "Repeated vomiting or dry heaving, not passing stool, painful abdomen, lethargy, known exposure to foam rubber, rubber, or plastic objects.",
-    action: "Do not try to induce vomiting. Go to emergency vet immediately. GI obstruction requires surgery. Ferrets love to chew and swallow rubber, foam, and fabric — this is a common killer in young ferrets.",
-    boardCall: "Call while driving.",
-    alert: "alert-red",
-    alertText: "🚨 Ferrets can deteriorate rapidly from GI blockage. Do not wait."
-  },
-  {
-    level: "red",
-    name: "Suspected Canine Distemper",
-    tag: "🔴 Emergency vet — go now",
-    keywords: ["distemper","canine distemper","crusty eyes","crusty nose","rash","chin rash","lethargy","neurological"],
-    signs: "Rash on chin or groin, crusty eyes and nose, extreme lethargy, neurological symptoms. Ferret may have had unverified vaccination status.",
-    action: "Isolate the ferret immediately from all other animals in the home (dogs and other ferrets are susceptible). Go to the vet. Distemper is almost always fatal in ferrets. Confirm vaccination status with the board.",
-    boardCall: "Call immediately — other animals in foster home may be at risk.",
-    alert: "alert-red",
-    alertText: "🚨 Canine distemper is fatal in ferrets and spreads to dogs and other mustelids. Isolate immediately."
-  },
-  {
-    level: "red",
-    name: "Trauma (Fall, Bite, Crushing Injury)",
-    tag: "🔴 Emergency vet — go now",
-    keywords: ["trauma","fell","dropped","bite","injury","limping","broken bone","fracture","stepped on"],
-    signs: "Ferret was dropped, stepped on, bitten by another animal, or fell from height. May be limping, crying, or non-weight-bearing.",
-    action: "Do not try to splint or manipulate injured limb. Keep ferret as still as possible in a small, warm carrier. Go to emergency vet.",
-    boardCall: "Call while driving.",
-    alert: "alert-red",
-    alertText: "🚨 Internal injuries may not be visible. Even if the ferret seems okay, get evaluated."
-  },
-  {
-    level: "red",
-    name: "Toxin Ingestion / Poisoning",
-    tag: "🔴 Emergency vet — go now",
-    keywords: ["poison","toxic","ingested","ate","household chemical","plant","medication","xylitol","raisin","chocolate"],
-    signs: "Ferret ingested a household chemical, plant, medication, or human food known to be toxic. May be drooling excessively, seizing, or lethargic.",
-    action: "Bring the substance container or plant to the vet. Do not induce vomiting unless specifically instructed by a vet. Call ASPCA Animal Poison Control (888-426-4435) if vet is unavailable.",
-    boardCall: "Call while driving.",
-    alert: "alert-red",
-    alertText: "🚨 Common ferret hazards: ibuprofen, Tylenol, xylitol, raisins, grapes, chocolate, many houseplants."
-  },
-  {
-    level: "red",
-    name: "Heat Stroke",
-    tag: "🔴 Emergency vet — go now",
-    keywords: ["heat stroke","overheating","hot","panting","limp","flat","summer"],
-    signs: "Ferret is limp, unresponsive, panting (unusual in ferrets), or extremely lethargic in hot conditions. Ferrets cannot tolerate temperatures above ~80°F.",
-    action: "Move to a cool area immediately. Apply cool (not cold) wet cloths to paws and armpits. Do NOT submerge in cold water — can cause shock. Fan gently. Go to emergency vet.",
-    boardCall: "Call while driving.",
-    alert: "alert-red",
-    alertText: "🚨 Heat stroke in ferrets is rapidly fatal. Ferrets do not pant to cool down like dogs."
-  }
+  {level:"red",name:"Seizure / Unconscious",tag:"🔴 Emergency now",
+   keywords:["seizure","seizing","unconscious","collapse","convulsing","unresponsive","not waking","fitting"],
+   signs:"Full body seizure, convulsions, or won't wake up. Gums may be pale or blue.",
+   action:"Rub honey or Karo syrup on the gums — do NOT pour liquid in if unconscious. Turn on side. Keep warm. Go to emergency vet NOW.",
+   board:"Call while driving.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 Do not wait. Prolonged low blood sugar causes permanent brain damage."}},
+  {level:"red",name:"Complete Urinary Blockage",tag:"🔴 Emergency now",
+   keywords:["blockage","no urine","straining no output","male blocked","can't urinate","urinary blockage"],
+   signs:"Straining in litter box with absolutely no urine coming out. May be crying. Belly may feel hard.",
+   action:"Go to emergency vet immediately. Do not wait or try home remedies.",
+   board:"Call while driving.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 A complete blockage can be fatal within hours."}},
+  {level:"red",name:"Severe Difficulty Breathing",tag:"🔴 Emergency now",
+   keywords:["can't breathe","labored breathing","open mouth breathing","gasping","blue gums","grey gums","respiratory"],
+   signs:"Breathing with mouth open, very fast or labored breathing at rest, blue or grey gums or tongue.",
+   action:"Keep ferret calm. Do not hold tightly. Go to emergency vet immediately.",
+   board:"Call while driving.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 Breathing distress is always a life-threatening emergency."}},
+  {level:"red",name:"GI Blockage / Swallowed Object",tag:"🔴 Emergency now",
+   keywords:["obstruction","swallowed rubber","ate foam","blocked","repeated vomiting","no stool","dry heaving","swallowed object"],
+   signs:"Repeated vomiting or dry heaving, no stool passing, painful or bloated belly. May have chewed foam, rubber, or fabric.",
+   action:"Do not induce vomiting. Go to emergency vet now — this requires surgery.",
+   board:"Call while driving.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 Ferrets go downhill fast with a blockage. Do not wait."}},
+  {level:"red",name:"Suspected Canine Distemper",tag:"🔴 Emergency now",
+   keywords:["distemper","canine distemper","crusty eyes","crusty nose","rash chin","rash groin","neurological","unvaccinated"],
+   signs:"Rash on chin or groin, crusty eyes and nose, extreme lethargy, or neurological symptoms.",
+   action:"Isolate the ferret from ALL other animals immediately — dogs and other ferrets are at risk. Go to the vet. Confirm vaccination history with board.",
+   board:"Call immediately — other animals in the home may be in danger.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 Distemper is nearly always fatal in ferrets and spreads to dogs. Isolate immediately."}},
+  {level:"red",name:"Trauma — Fall, Bite, or Crush",tag:"🔴 Emergency now",
+   keywords:["fell","dropped","stepped on","bitten","crush","limping","broken bone","fracture","not using leg","trauma"],
+   signs:"Ferret was dropped, stepped on, bitten by another animal, or fell from height. May be limping, crying, or won't use a limb.",
+   action:"Don't try to splint or move the injured limb. Keep ferret still and warm in a carrier. Go to emergency vet.",
+   board:"Call while driving.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 Internal injuries aren't always visible. Get evaluated even if the ferret seems okay."}},
+  {level:"red",name:"Poisoning / Toxin Ingested",tag:"🔴 Emergency now",
+   keywords:["poison","toxic","ate medication","household chemical","xylitol","chocolate","raisin","ibuprofen","plant ate"],
+   signs:"Ferret ingested something toxic — household chemical, human medication, or dangerous food. May be drooling, seizing, or suddenly very lethargic.",
+   action:"Bring the container or plant with you. Do not induce vomiting unless told to by a vet. ASPCA Poison Control: 888-426-4435.",
+   board:"Call while driving.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 Common dangers: ibuprofen, Tylenol, xylitol (sugar-free gum), raisins, chocolate, many houseplants."}},
+  {level:"red",name:"Heat Stroke",tag:"🔴 Emergency now",
+   keywords:["heat stroke","overheating","too hot","panting","limp from heat","unresponsive heat"],
+   signs:"Limp, unresponsive, or panting (very unusual in ferrets) after being in a warm space. Ferrets cannot tolerate above ~80°F.",
+   action:"Move to cool area. Apply cool (not cold) damp cloths to paws and armpits. Do NOT put in cold water. Fan gently. Emergency vet immediately.",
+   board:"Call while driving.",
+   escalate:null,
+   alert:{level:"red",text:"🚨 Heat stroke kills quickly in ferrets. They cannot pant like dogs to cool down."}}
 ];
 
 let activeFilter = 'all';
@@ -1360,39 +751,50 @@ function renderCards(items) {
   const container = document.getElementById('cardContainer');
   const noResults = document.getElementById('noResults');
   container.innerHTML = '';
-  if (items.length === 0) {
-    noResults.style.display = 'block';
-    return;
-  }
+  if (!items.length) { noResults.style.display = 'block'; return; }
   noResults.style.display = 'none';
-  items.forEach((item, i) => {
+
+  const levelMeta = {
+    green:  {label:'🟢  Foster Can Handle at Home',   cls:'lh-green'},
+    yellow: {label:'🟡  Call the Board for Help',     cls:'lh-yellow'},
+    blue:   {label:'🔵  Vet Appointment — Board Will Schedule', cls:'lh-blue'},
+    red:    {label:'🔴  Emergency Vet — Go Now',      cls:'lh-red'}
+  };
+  let lastLevel = null;
+
+  items.forEach(item => {
+    if (item.level !== lastLevel) {
+      lastLevel = item.level;
+      const m = levelMeta[item.level];
+      const hdr = document.createElement('div');
+      hdr.className = `level-header ${m.cls}`;
+      hdr.innerHTML = `${m.label}<div class="lh-line"></div>`;
+      container.appendChild(hdr);
+    }
+
+    const boardLabel =
+      item.level === 'green' ? 'Board help (optional)' :
+      item.level === 'red'   ? 'Board contact' : 'Contact board';
+
+    const alertHTML = item.alert
+      ? `<div class="card-alert alert-${item.alert.level}">${item.alert.text}</div>` : '';
+
     const card = document.createElement('div');
     card.className = 'card';
-    card.dataset.level = item.level;
     card.innerHTML = `
-      <div class="card-header" onclick="toggleCard(this)">
-        <div class="card-level card-level-${item.level}"></div>
+      <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="card-bar bar-${item.level}"></div>
         <div class="card-name">${item.name}</div>
         <div class="card-tag tag-${item.level}">${item.tag}</div>
         <svg class="card-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <div class="card-body">
-        <section>
-          <h4>Signs to look for</h4>
-          <p>${item.signs}</p>
-        </section>
-        <section>
-          <h4>What to do</h4>
-          <p>${item.action}</p>
-        </section>
-        <section>
-          <h4>${item.level === 'green' ? 'Board assistance (optional)' : item.level === 'red' ? 'Board contact' : 'Contact board to arrange'}</h4>
-          <p>${item.boardCall}</p>
-        </section>
-        ${item.alertText ? `<div class="alert ${item.alert || 'alert-yellow'}">${item.alertText}</div>` : ''}
+        <section><h4>Signs to look for</h4><p>${item.signs}</p></section>
+        <section><h4>What to do</h4><p>${item.action}</p></section>
+        <section><h4>${boardLabel}</h4><p>${item.board}</p></section>
         ${item.escalate ? `<section><h4>When to escalate</h4><p>${item.escalate}</p></section>` : ''}
-      </div>
-    `;
+        ${alertHTML}
+      </div>`;
     container.appendChild(card);
   });
 }
@@ -1403,92 +805,61 @@ function onSearchInput() {
 }
 
 function filterCards() {
-  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
   let filtered = DATA;
-  if (activeFilter !== 'all') {
-    filtered = filtered.filter(d => d.level === activeFilter);
-  }
-  if (query) {
-    filtered = filtered.filter(d =>
-      d.name.toLowerCase().includes(query) ||
-      d.signs.toLowerCase().includes(query) ||
-      d.action.toLowerCase().includes(query) ||
-      d.keywords.some(k => k.toLowerCase().includes(query))
-    );
-  }
+  if (activeFilter !== 'all') filtered = filtered.filter(d => d.level === activeFilter);
+  if (q) filtered = filtered.filter(d =>
+    d.name.toLowerCase().includes(q) ||
+    d.signs.toLowerCase().includes(q) ||
+    d.action.toLowerCase().includes(q) ||
+    (d.escalate && d.escalate.toLowerCase().includes(q)) ||
+    d.keywords.some(k => k.toLowerCase().includes(q))
+  );
   renderCards(filtered);
+}
+
+function setFilter(level, btn) {
+  activeFilter = level;
+  document.querySelectorAll('.pill').forEach(p => p.className = 'pill');
+  btn.classList.add('active-' + level);
+  filterCards();
 }
 
 async function runAISearch() {
   const query = document.getElementById('searchInput').value.trim();
   if (!query || query.length < 3) return;
-
   const btn = document.getElementById('searchBtn');
   const aiResult = document.getElementById('aiResult');
-
   btn.classList.add('loading');
-  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`;
+  btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`;
   aiResult.style.display = 'none';
-
-  const conditionList = DATA.map(d => `- "${d.name}" [${d.level}]: ${d.signs}`).join('\n');
-
+  const list = DATA.map(d => `- "${d.name}" [${d.level}]: ${d.signs}`).join('\n');
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1000,
-        system: `You are a ferret health triage assistant for a foster nonprofit. A foster parent is describing what they see. Match their description to the most likely condition(s) from the list below and tell them in 2–3 plain sentences which card(s) to look at and what triage level it is. Be warm but direct. Do not give medical advice beyond what is in the condition list. If nothing matches, say so and tell them to call a board member immediately.
-
-Conditions:
-${conditionList}`,
-        messages: [{ role: "user", content: query }]
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-6", max_tokens:1000,
+        system:`You are a ferret health triage assistant for FURS (Ferrets Unlimited Rescue Services). A foster parent describes symptoms. In 2 plain sentences, tell them which card to look at and what level it is. Be warm and clear. If nothing matches, tell them to call the board.\n\nConditions:\n${list}`,
+        messages:[{role:"user",content:query}]
       })
     });
-    const data = await response.json();
-    const text = data.content?.find(b => b.type === 'text')?.text || '';
+    const data = await res.json();
+    const text = data.content?.find(b=>b.type==='text')?.text||'';
     filterCards();
-    aiResult.innerHTML = `<strong>🤖 AI Triage:</strong> ${text}`;
+    aiResult.innerHTML = `<strong>AI Triage:</strong> ${text}`;
     aiResult.style.display = 'block';
-  } catch (e) {
-    aiResult.innerHTML = `<strong>Search tip:</strong> Couldn't reach AI assistant. Try keywords like "seizure," "wobbly," "hair loss," or "lump" to find the right card manually.`;
+  } catch(e) {
+    aiResult.innerHTML = `<strong>Tip:</strong> AI unavailable. Try keywords like "seizing," "hair loss," or "lump."`;
     aiResult.style.display = 'block';
   }
-
   btn.classList.remove('loading');
-  btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>`;
+  btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>`;
 }
 
-function setFilter(level, btn) {
-  activeFilter = level;
-  document.querySelectorAll('.pill').forEach(p => {
-    p.className = 'pill';
-  });
-  if (level === 'all') btn.classList.add('active-all');
-  else btn.classList.add('active-' + level);
-  filterCards();
-}
-
-function toggleCard(header) {
-  const card = header.parentElement;
-  card.classList.toggle('open');
-}
-
-function toggleProtocol(header) {
-  header.classList.toggle('open');
-  document.getElementById('protocolBody').classList.toggle('open');
-}
-
-// Init
 renderCards(DATA);
-document.querySelector('.protocol-banner-header').classList.add('open');
-document.getElementById('protocolBody').classList.add('open');
 document.getElementById('searchInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') runAISearch();
 });
 </script>
-</div><!-- /page-shell -->
-
-
-</body></html>
+</body>
+</html>
